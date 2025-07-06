@@ -20,7 +20,7 @@ import {
 const mercury_distance = 1;   
 const venus_distance   = 2.1;   
 const earth_distance   = 3;   
-const mars_distance    = 4.5;  
+const mars_distance    = 4.3;  
 const jupiter_distance = 7;   
 const saturn_distance  = 9;   
 const uranus_distance  = 12;   
@@ -143,7 +143,8 @@ export const saturn_material = new THREE.MeshStandardMaterial({
 });
 export const saturn = new THREE.Mesh(geometry, saturn_material);
 saturn.scale.setScalar(saturn_scale)
-saturn.rotation.z = THREE.MathUtils.degToRad(26.7);
+saturn.rotation.order = 'ZYX'; 
+saturn.rotation.z = 26 * Math.PI / 180;
 saturn.position.x = -saturn_distance * 10;
 
 // saturn ring
@@ -197,7 +198,6 @@ earth_orbit.scale.setScalar(earth_distance)
 export const moon_orbit = new THREE.Mesh( oribt_geometry, material )
 moon_orbit.scale.setScalar(0.4)
 
-
 export const mars_orbit = new THREE.Mesh( oribt_geometry, material )
 mars_orbit.scale.setScalar(mars_distance)
 
@@ -246,7 +246,6 @@ uranus_group.add(uranus)
 ////////////////////////////////////////////////////////////////
 export const neptune_group = new THREE.Group()
 neptune_group.add(neptune)
-
-
+////////////////////////////////////////////////////////////////
 
 

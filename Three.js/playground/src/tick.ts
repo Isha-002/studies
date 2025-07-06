@@ -46,6 +46,8 @@ import {
   venus_rotation,
 } from './constants';
 
+
+
 const earthWorldPos = new THREE.Vector3();
 export const tick = (
   clock: Clock,
@@ -69,6 +71,8 @@ export const tick = (
   uranus.rotation.y = elapsedTime / uranus_rotation;
   neptune.rotation.y = elapsedTime / neptune_rotation;
 
+
+
   // planets rotating around sun
   mercury_group.rotation.y = elapsedTime / mercury_full_revolution;
   venus_group.rotation.y = elapsedTime / venus_full_revolution;
@@ -89,6 +93,7 @@ export const tick = (
   earth.getWorldPosition(earthWorldPos);
   moon_group.position.copy(earthWorldPos);
   moon_orbit.position.copy(earthWorldPos);
+  console.log(earthWorldPos)
 
   controls.update();
   renderer.render(scene, camera);

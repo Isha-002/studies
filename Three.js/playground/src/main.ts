@@ -42,6 +42,7 @@ import {
 import { setup_debug } from './debug';
 import { tick } from './tick';
 import { ambient_light, point_light } from './lights';
+import { galaxy_particles, inner_particles, outer_particles } from './particles';
 
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
@@ -197,5 +198,9 @@ scene.add(
   neptune_orbit,
   // lights
   ambient_light,
-  point_light
+  point_light,
+  // particles
+  inner_particles,
+  outer_particles,
+  galaxy_particles
 );
