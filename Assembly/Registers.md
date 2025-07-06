@@ -1,7 +1,7 @@
 
 ### General Purpose Registers
 
-- `EAX` (Accumulator) → <i>Used for arithmetic operations and function return values</i>   
+- `EAX` (Accumulator) → <i>Used for arithmetic operations and <b>function return values</b></i>   
   `AX` (lower 16 bits)  
   `AH` (upper 8 bits of AX)  
   `AL` (lower 8 bits of AX)
