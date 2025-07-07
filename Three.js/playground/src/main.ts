@@ -102,6 +102,8 @@ scene.add(camera);
 // orbit
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
+controls.minZoom = 1;
+controls.maxZoom = 10
 
 // renderer
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
