@@ -23,6 +23,11 @@ isActive()
 
 
 <style scoped>
+body {
+  font-family: Vazirmatn;
+  font-weight: 400;
+}
+
 .app-container {
   direction: rtl;
   position: relative;
