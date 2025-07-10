@@ -32,15 +32,15 @@ const actions = ref([
 </script>
 
 <template>
-<div class="flex flex-col items-center w-full p-6 gap-8">
+<div class="flex flex-col items-center w-full p-6 gap-8 h-auto">
   <!--  -->
   <div class="flex w-full justify-between">
     <div class="font-bold text-2xl">داشبورد</div>
     <div class="text-gray-300 font-semibold">امروز: {{ iranDate }}</div>
   </div>
   <!--  -->
-  <div class="flex w-full justify-between py-10">
-      <div v-for="stat in stats" :key="stat.title" class="border border-red-500 py-4 w-[20%] flex flex-col items-center">
+  <div class="flex flex-col lg:flex-row items-center w-full justify-between py-10 gap-4">
+      <div v-for="stat in stats" :key="stat.title" class="border border-red-500 py-4 w-full lg:w-[20%] flex flex-col items-center">
         <div class="text-gray-400 mb-1">{{ stat.title }}</div>
         <div class="text-2xl font-bold text-white mb-1">{{ stat.value }}</div>
       </div>

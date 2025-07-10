@@ -48,7 +48,7 @@ const clock = new THREE.Clock()
 
 const updateScene = () => {
   scene.clear()
-  if (props.sphere === true) {
+  if (props.sphere === true & window.innerWidth > 1000) {
     scene.add(camera, login_mesh, sphere_mesh);
   } else {
     scene.add(camera, login_mesh);
@@ -94,11 +94,6 @@ watch(() => props.sphere, (_) => {
   updateScene()
 })
 
-
-
-
-
-
 </script>
 
 <template>
@@ -109,9 +104,7 @@ watch(() => props.sphere, (_) => {
 
 
 <style>
-html, body {
-  overflow: hidden;
-}
+
 
 canvas {
   position: fixed;

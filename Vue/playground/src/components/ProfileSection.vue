@@ -38,9 +38,9 @@ onMounted(() => {
 
 <template>
   <div
-    class="w-screen h-screen grid grid-cols-2 grid-rows-4 gap-4 pointer-events-auto bg-black/20"
+    class="w-full h-dvh flex flex-col lg:w-dvw lg:grid lg:grid-rows-4 lg:grid-cols-2 gap-4 lg:gap-2 pointer-events-auto bg-black/20 overflow-auto py-2 lg:py-0"
   >
-    <div class="row-span-2 glass-card backdrop-blur-[2px]">
+    <div class="lg:row-span-2 glass-card backdrop-blur-[2px] ">
       <Pfp
         :userProfile="userProfile"
         @update:avatar="userProfile.avatar = $event"
@@ -49,7 +49,7 @@ onMounted(() => {
     </div>
 
     <div
-      class="row-span-2 col-start-1 row-start-3 glass-card backdrop-blur-[2px]"
+      class="lg:row-span-2 lg:col-start-1 lg:row-start-3 glass-card backdrop-blur-[2px]"
     >
       <component
         :is="showEditForm ? PfpEdit : Notification"
@@ -59,7 +59,7 @@ onMounted(() => {
     </div>
 
     <div
-      class="row-span-4 col-start-2 row-start-1 glass-card backdrop-blur-[2px]"
+      class="lg:row-span-4 lg:col-start-2 lg:row-start-1 glass-card backdrop-blur-[2px]"
     >
       <Dashboard />
     </div>
