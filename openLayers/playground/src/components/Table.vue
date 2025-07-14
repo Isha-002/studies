@@ -118,7 +118,7 @@ const columns: TableColumnType[] = [
   :columns="columns" 
   :data-source="dataSource" 
   :pagination="{ position: ['bottomCenter'], defaultPageSize: 3, hideOnSinglePage: true }"
-  size ="small"
+  size ="middle"
   /> 
 </template>
 

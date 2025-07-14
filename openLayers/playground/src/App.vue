@@ -120,7 +120,7 @@ const handleDrawMode = () => {
       <Button
         type="primary"
         shape="circle"
-        size="small"
+        size="middle"
         :class="
           isDark
             ? '!bg-violet-900 w-max pointer-events-auto !m-2'
@@ -152,7 +152,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
           @click=""
         >
           <SaveOutlined style="vertical-align: middle" />
@@ -165,7 +165,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
           @click="handleDraw('Polygon')"
         >
           <EditOutlined style="vertical-align: middle" />
@@ -178,7 +178,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
           @click="deleteSelected"
         >
           <DeleteOutlined style="vertical-align: middle" />
@@ -202,7 +202,7 @@ const handleDrawMode = () => {
           "
           :type="editDraw ? 'default' : 'primary'"
           shape="circle"
-          size="small"
+          size="middle"
           @click="handleDrawMode"
         >
           <EditOutlined style="vertical-align: middle" />
@@ -216,7 +216,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
           @click="handleSidebarOpen"
         >
           <GlobalOutlined style="vertical-align: middle" />
@@ -230,7 +230,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
         >
           <GoldOutlined style="vertical-align: middle" />
         </Button>
@@ -243,7 +243,7 @@ const handleDrawMode = () => {
           "
           type="primary"
           shape="circle"
-          size="small"
+          size="middle"
           @click="handleModalOpen"
         >
           <TableOutlined style="vertical-align: middle" />
@@ -303,7 +303,7 @@ const handleDrawMode = () => {
       <!-- right -->
       <Flex
         :class="[
-          'flex-col row-span-4 col-span-2 col-start-7 row-start-5 pointer-events-none p-2 rounded ml-3 mt-[25%] h-max shadow',
+          'flex-col row-span-4 col-span-2 col-start-7 row-start-5 pointer-events-none p-2 rounded ml-3 mt-[30%] h-max shadow',
           isDark ? '!bg-violet-900' : '!bg-white',
         ]"
       >
@@ -312,19 +312,19 @@ const handleDrawMode = () => {
           align="center"
           :class="[
             isDark ? '!bg-indigo-400' : '!bg-gray-100',
-            'px-4 py-2 rounded-lg',
+            'px-4 py-3 rounded-lg',
           ]"
         >
           <Statistic
             :value="lnglat[0]"
             class="text-center"
             :value-style="{
-              fontSize: '12px',
+              fontSize: '18px',
               color: isDark ? 'white' : 'blue',
             }"
           >
             <template #title>
-              <span :style="{ color: isDark ? 'white' : 'black' }">Lng</span>
+              <span :style="{ color: isDark ? 'white' : 'black', fontSize: '18px' }">Lng</span>
             </template>
           </Statistic>
 
@@ -332,12 +332,12 @@ const handleDrawMode = () => {
             :value="lnglat[1]"
             class="text-center"
             :value-style="{
-              fontSize: '12px',
+              fontSize: '18px',
               color: isDark ? 'white' : 'mediumseagreen',
             }"
           >
             <template #title>
-              <span :style="{ color: isDark ? 'white' : 'black' }">Lat</span>
+              <span :style="{ color: isDark ? 'white' : 'black', fontSize: '18px' }">Lat</span>
             </template>
           </Statistic>
 
@@ -345,12 +345,12 @@ const handleDrawMode = () => {
             :value="zoom"
             class="text-center"
             :value-style="{
-              fontSize: '12px',
+              fontSize: '18px',
               color: isDark ? 'white' : 'crimson',
             }"
           >
             <template #title>
-              <span :style="{ color: isDark ? 'white' : 'black' }">Zoom</span>
+              <span :style="{ color: isDark ? 'white' : 'black', fontSize: '18px' }">Zoom</span>
             </template>
           </Statistic>
         </Flex>
