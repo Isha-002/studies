@@ -9,9 +9,7 @@ import { getArea, getLength } from "ol/sphere";
 import Modify from 'ol/interaction/Modify.js';
 import type { Geometry } from "ol/geom";
 import Select from 'ol/interaction/Select';
-import Style from "ol/style/Style";
-import Stroke from "ol/style/Stroke";
-import Fill from "ol/style/Fill";
+
 
 export type DrawType = "Circle" | "Point" | "Polygon";
 export type BaseLayerKey = "osm" | "mapTiler" | "carto" | "topo" | "wikimedia" | "dark";
@@ -89,9 +87,9 @@ const draw = (type: DrawType) => {
       }
     });
 
-    map.on('pointermove', (e)=> {
+    // map.on('pointermove', (e)=> {
       
-    })
+    // })
 
     return draw;
   };
