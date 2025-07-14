@@ -6,10 +6,9 @@ import type { TreeProps } from 'ant-design-vue'
 import { faMap } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-defineProps({
+const props = defineProps({
   isDark: {
     type: Boolean,
-    default: false
   }
 })
 
@@ -70,16 +69,18 @@ const handleSelect = (_: any, info: any) => {
 }
 
 
+
+console.log(props.isDark)
 </script>
 
 <template>
   <Tree
-  :tree-data="treeData"
-  :expanded-keys="expandedKeys"
-  @expand="onExpand"
-  show-icon
-  :show-line="{ showLeafIcon: false }"
-  @select="handleSelect"
-  :class="isDark ? '!bg-indigo-400 !text-white' : '!bg-white'"
+    :tree-data="treeData"
+    :expanded-keys="expandedKeys"
+    @expand="onExpand"
+    show-icon
+    :show-line="{ showLeafIcon: false }"
+    @select="handleSelect"
+    :class="isDark ? '!bg-indigo-400 !text-white' : '!bg-white !text-black'"
   />
 </template>

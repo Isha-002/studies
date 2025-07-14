@@ -4,9 +4,11 @@ import { h, onMounted, ref, watch } from 'vue';
 import { useMap, type BaseLayerKey, type DrawType } from './composable/useMap';
 import { Button, Drawer, Flex, Modal, Statistic } from 'ant-design-vue';
 import {
+  DeleteOutlined,
   EditOutlined,
   GlobalOutlined,
   GoldOutlined,
+  SaveOutlined,
   TableOutlined,
 } from '@ant-design/icons-vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -18,25 +20,33 @@ import BaseMaps from './components/BaseMaps.vue';
 
 const isDark = ref(false);
 const mapRef = ref(null);
-const drawActive = ref(false);
+
+
 let handleDraw: (type: DrawType) => void | null;
 let draww: Draw | null;
+let deleteSelected: () => void;
+
 const lnglat = ref(['0', '0']);
 const zoom = ref('10');
 
 onMounted(() => {
   if (mapRef.value) {
-    const { draw, map, setBaseMap } = useMap(mapRef.value);
-
+    const { draw, map, setBaseMap, editMode, deleteSelected: del } = useMap(mapRef.value);
+    ///////////////// draw ////////////
     handleDraw = (type: DrawType) => {
-      drawActive.value = !drawActive.value;
-      if (drawActive.value) {
+      editDraw.value = !editDraw.value;
+      if (editDraw.value) {
         draww = draw(type);
       } else if (draww) {
         map.removeInteraction(draww);
         draww = null;
       }
     };
+    ///////////////// modify ////////////
+    watch(editDraw, (active) => {
+      editMode(active);
+    });
+    deleteSelected = del;
     ///////////////// mouse ////////////
     const center = map.getView().getCenter();
     if (center) {
@@ -62,7 +72,6 @@ onMounted(() => {
     watch(isDark, (dark) => {
       selectedMap.value = dark ? 'dark' : 'osm';
     });
-
   }
 });
 </script>
@@ -72,6 +81,8 @@ const isMobile = window.innerWidth < 600;
 const selectedMap = ref('osm');
 const openSideBar = ref(false);
 const open = ref(false);
+const editDraw = ref(false)
+const drawMode = ref(false);
 
 const handleModalOpen = () => {
   open.value = true;
@@ -91,6 +102,10 @@ const handleSidebarClose = () => {
 const handleSelectedMap = (node: BaseLayerKey) => {
   selectedMap.value = node;
 };
+
+const handleDrawMode = () => {
+  drawMode.value = !drawMode.value;
+};
 </script>
 
 <template>
@@ -101,8 +116,9 @@ const handleSelectedMap = (node: BaseLayerKey) => {
     ></div>
 
     <div class="overlay">
+      <!-- dark mode button -->
       <Button
-        type="text"
+        type="primary"
         shape="circle"
         size="small"
         :class="
@@ -119,6 +135,56 @@ const handleSelectedMap = (node: BaseLayerKey) => {
         />
       </Button>
 
+      <!-- edit draw buttons -->
+      <Flex
+        justify="center"
+        :class="[
+          'pointer-events-auto col-span-2 col-start-4 gap-2 h-min w-min place-self-center mb-[10%] px-3 py-1 rounded-full',
+          isDark ? 'bg-indigo-400 border-4 border-violet-900' : 'bg-gray-100 border-4 border-white',
+          drawMode ? '' : '!hidden'
+        ]"
+      >
+        <Button
+          :class="
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto !bg-[#06923E]'
+          "
+          type="primary"
+          shape="circle"
+          size="small"
+          @click=""
+        >
+          <SaveOutlined style="vertical-align: middle" />
+        </Button>
+        <Button
+          :class="
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto'
+          "
+          type="primary"
+          shape="circle"
+          size="small"
+          @click="handleDraw('Polygon')"
+        >
+          <EditOutlined style="vertical-align: middle" />
+        </Button>
+        <Button
+          :class="
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto !bg-red-500'
+          "
+          type="primary"
+          shape="circle"
+          size="small"
+          @click="deleteSelected"
+        >
+          <DeleteOutlined style="vertical-align: middle" />
+        </Button>
+      </Flex>
+
       <!-- left -->
       <Flex
         class="row-span-2 row-start-5 pointer-events-none p-2 flex-col"
@@ -129,22 +195,24 @@ const handleSelectedMap = (node: BaseLayerKey) => {
         <Button
           :class="
             isDark
-              ? drawActive
+              ? editDraw
                 ? 'pointer-events-auto !bg-blue-500 !text-white'
                 : 'pointer-events-auto !bg-violet-900'
               : 'pointer-events-auto'
           "
-          :type="drawActive ? 'default' : 'primary'"
+          :type="editDraw ? 'default' : 'primary'"
           shape="circle"
           size="small"
-          @click="handleDraw('Polygon')"
+          @click="handleDrawMode"
         >
           <EditOutlined style="vertical-align: middle" />
         </Button>
 
         <Button
           :class="
-            isDark ? 'pointer-events-auto !bg-violet-900' : 'pointer-events-auto'
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto'
           "
           type="primary"
           shape="circle"
@@ -156,7 +224,9 @@ const handleSelectedMap = (node: BaseLayerKey) => {
 
         <Button
           :class="
-            isDark ? 'pointer-events-auto !bg-violet-900' : 'pointer-events-auto'
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto'
           "
           type="primary"
           shape="circle"
@@ -167,7 +237,9 @@ const handleSelectedMap = (node: BaseLayerKey) => {
 
         <Button
           :class="
-            isDark ? 'pointer-events-auto !bg-violet-900' : 'pointer-events-auto'
+            isDark
+              ? 'pointer-events-auto !bg-violet-900'
+              : 'pointer-events-auto'
           "
           type="primary"
           shape="circle"
@@ -203,12 +275,29 @@ const handleSelectedMap = (node: BaseLayerKey) => {
         :closable="true"
         @close="handleSidebarClose"
         :width="isMobile ? '100%' : '25%'"
-        :headerStyle="{ backgroundColor: '#4d179a', color: 'white' }"
-        :bodyStyle="{ backgroundColor: '#4d179a', color: 'white' }"
-        :title="h('span', { style: 'color: white;' }, 'تغییر نقشه')"
-        :closeIcon="h('span', { style: 'color: white; font-size: 20px;' }, '×')"
+        :headerStyle="{
+          backgroundColor: isDark ? '#4d179a' : 'white',
+          color: isDark ? 'white' : 'black',
+        }"
+        :bodyStyle="{
+          backgroundColor: isDark ? '#4d179a' : 'white',
+          color: isDark ? 'white' : 'black',
+        }"
+        :title="
+          h(
+            'span',
+            { style: isDark ? 'color: white;' : 'color: black;' },
+            'تغییر نقشه'
+          )
+        "
+        :closeIcon="
+          h('span', { style: isDark ? 'color: white;' : 'color: black;' }, '×')
+        "
       >
-        <BaseMaps @nodeSelected="handleSelectedMap" isDark/>
+        <BaseMaps
+          @nodeSelected="handleSelectedMap"
+          :isDark="isDark"
+        />
       </Drawer>
 
       <!-- right -->

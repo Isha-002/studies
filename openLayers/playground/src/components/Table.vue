@@ -45,8 +45,8 @@ const delete_value = (data: RowData) => {
 const handleInputChange = (e: Event, data: RowData, column: keyof RowData) => {
   const newData = [...dataSource.value]
   const index = newData.findIndex(item => item.key === data.key)
-  if (index !== -1) {
-    newData[index][column] = e.target.value 
+  if (index !== -1 && e.target) {
+    newData[index][column] = (e.target as HTMLInputElement).value; 
     dataSource.value = newData
   }
 }
