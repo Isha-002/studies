@@ -23,7 +23,7 @@ export function useMap(target: HTMLElement) {
     osm: new TileLayer({ source: new OSM() }),
     mapTiler: new TileLayer({
       source: new ImageTile({
-        url: "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=get_your_own_D6rA4zTHduk6KOKTXzGB",
+        url: "https://api.maptiler.com/maps/satellite/256/{z}/{x}/{y}.jpg?key=6qBhu0CbH376u1yBufBy",
         maxZoom: 20,
       }),
     }),

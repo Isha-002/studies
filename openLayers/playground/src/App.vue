@@ -105,6 +105,7 @@ const handleSelectedMap = (node: BaseLayerKey) => {
 
 const handleDrawMode = () => {
   drawMode.value = !drawMode.value;
+  editDraw.value = !drawMode.value;
 };
 </script>
 
@@ -139,7 +140,7 @@ const handleDrawMode = () => {
       <Flex
         justify="center"
         :class="[
-          'pointer-events-auto col-span-2 col-start-4 gap-2 h-min w-min place-self-center mb-[10%] px-3 py-1 rounded-full',
+          'pointer-events-auto col-span-2 col-start-4 gap-2 h-min w-min place-self-center mb-[10%] px-3 py-1 rounded-full hidden',
           isDark ? 'bg-indigo-400 border-4 border-violet-900' : 'bg-gray-100 border-4 border-white',
           drawMode ? '' : '!hidden'
         ]"

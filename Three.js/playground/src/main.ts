@@ -102,8 +102,12 @@ scene.add(camera);
 // orbit
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.minZoom = 1;
+controls.minZoom = 0.75
 controls.maxZoom = 10
+// limit camera from top
+controls.minPolarAngle = Math.PI / 4;   
+// limit camera from down
+controls.maxPolarAngle = Math.PI / 2.3;   
 
 // renderer
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
