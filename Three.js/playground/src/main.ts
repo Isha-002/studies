@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 import GUI from 'lil-gui';
+import { generateGalaxy } from './galaxy';
 
 import gsap from 'gsap';
 
@@ -42,7 +43,12 @@ import {
 import { setup_debug } from './debug';
 import { tick } from './tick';
 import { ambient_light, point_light } from './lights';
-import { galaxy_particles, inner_particles, outer_particles } from './particles';
+import {
+  galaxy_particles,
+  inner_particles,
+  outer_particles,
+} from './particles';
+
 
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
@@ -84,14 +90,13 @@ const size = {
 // export const camera = new THREE.PerspectiveCamera(75, size.width / size.height);
 const camera_view = 100;
 export const camera = new THREE.OrthographicCamera(
-  -camera_view * size.width / size.height,
-  camera_view * size.width / size.height,
+  (-camera_view * size.width) / size.height,
+  (camera_view * size.width) / size.height,
   camera_view,
   -camera_view
 );
 
-
-camera.position.set(-100, 80, 200); 
+camera.position.set(-100, 80, 200);
 camera.lookAt(saturn.position);
 scene.add(camera);
 
@@ -102,12 +107,12 @@ scene.add(camera);
 // orbit
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
-controls.minZoom = 0.75
-controls.maxZoom = 10
+controls.minZoom = 0.75;
+controls.maxZoom = 10;
 // limit camera from top
-controls.minPolarAngle = Math.PI / 4;   
+controls.minPolarAngle = Math.PI / 4;
 // limit camera from down
-controls.maxPolarAngle = Math.PI / 2.3;   
+controls.maxPolarAngle = Math.PI / 2.3;
 
 // renderer
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
@@ -178,9 +183,10 @@ window.addEventListener('resize', () => {
 // moire patterns
 // basis compresion for images
 
-setup_debug(camera, gui);
+setup_debug(camera, gui, scene);
 
-scene.add(
+const solar_system_group = new THREE.Group();
+solar_system_group.add(
   // planets
   sun,
   mercury_group,
@@ -202,11 +208,18 @@ scene.add(
   saturn_orbit,
   uranus_orbit,
   neptune_orbit,
-  // lights
-  ambient_light,
-  point_light,
   // particles
   inner_particles,
   outer_particles,
   galaxy_particles
+);
+
+
+const galaxy = generateGalaxy(scene)
+scene.add(
+  galaxy,
+  // solar_system_group,
+  // lights
+  ambient_light,
+  point_light
 );

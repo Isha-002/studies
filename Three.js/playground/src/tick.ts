@@ -93,7 +93,6 @@ export const tick = (
   earth.getWorldPosition(earthWorldPos);
   moon_group.position.copy(earthWorldPos);
   moon_orbit.position.copy(earthWorldPos);
-  console.log(earthWorldPos)
 
   controls.update();
   renderer.render(scene, camera);
