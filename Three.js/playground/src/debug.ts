@@ -33,7 +33,7 @@ export function setup_debug(camera: Camera, gui: GUI, scene: Scene) {
     const galaxyPoints = generateGalaxy(scene);
     scene.add(galaxyPoints);
   });
-  galaxy.add(parameters, 'spin', -1, 1, 0.001).onChange(() => {
+  galaxy.add(parameters, 'spin', -1, 1, 0.0001).onChange(() => {
     const galaxyPoints = generateGalaxy(scene);
     scene.add(galaxyPoints);
   });

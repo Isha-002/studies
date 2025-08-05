@@ -45,6 +45,7 @@ import {
   venus_full_revolution,
   venus_rotation,
 } from './constants';
+import { generateMesh, physic_bodies, physic_mesh_count, physic_meshes, world } from './plain';
 
 
 
@@ -93,6 +94,20 @@ export const tick = (
   earth.getWorldPosition(earthWorldPos);
   moon_group.position.copy(earthWorldPos);
   moon_orbit.position.copy(earthWorldPos);
+
+  // PHYSICS!! - we put all physics logic here
+  world.step()
+  if (physic_meshes.length > 0)
+  for(let i = 0; i < physic_mesh_count; i++) {
+    const body = physic_bodies[i]
+    const position = body.translation()
+    const rotation = body.rotation()
+
+    physic_meshes[i].position.set(position.x, position.y, position.z)
+    physic_meshes[i].quaternion.set(rotation.x, rotation.y, rotation.z, rotation.w)
+  }
+
+
 
   controls.update();
   renderer.render(scene, camera);

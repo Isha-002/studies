@@ -1,3 +1,4 @@
+import { generatePlain } from './plain';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
@@ -50,6 +51,7 @@ import {
 } from './particles';
 
 
+
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
 canvas.classList.add('webgl');
@@ -87,16 +89,17 @@ const size = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
-// export const camera = new THREE.PerspectiveCamera(75, size.width / size.height);
+export const camera = new THREE.PerspectiveCamera(75, size.width / size.height);
 const camera_view = 100;
-export const camera = new THREE.OrthographicCamera(
-  (-camera_view * size.width) / size.height,
-  (camera_view * size.width) / size.height,
-  camera_view,
-  -camera_view
-);
+// export const camera = new THREE.OrthographicCamera(
+//   (-camera_view * size.width) / size.height,
+//   (camera_view * size.width) / size.height,
+//   camera_view,
+//   -camera_view
+// );
 
-camera.position.set(-100, 80, 200);
+// camera.position.set(-100, 80, 200);
+camera.position.set(0, 40, 40);
 camera.lookAt(saturn.position);
 scene.add(camera);
 
@@ -123,7 +126,7 @@ const cursor = {
   y: 0,
 };
 renderer.outputColorSpace = THREE.SRGBColorSpace;
-
+renderer.shadowMap.enabled = true;
 // needed for HDR rendering
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1;
@@ -216,10 +219,12 @@ solar_system_group.add(
 
 
 const galaxy = generateGalaxy(scene)
+const plain = generatePlain(scene)
+
 scene.add(
-  galaxy,
+  // galaxy,
   // solar_system_group,
-  // lights
+  // lights 
   ambient_light,
-  point_light
+  // point_light
 );
