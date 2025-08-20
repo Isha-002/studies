@@ -9,7 +9,7 @@ export const world = new RAPIER.World(physicsProperties.gravity)
 
 export const physic_meshes: THREE.Mesh[] = []
 export const physic_bodies: RigidBody[] = []
-export const physic_mesh_count = 100
+export const physic_mesh_count = 400
 
 export const generatePlain = (scene: THREE.Scene) => {
   const plain = new THREE.Mesh(

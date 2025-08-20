@@ -7,13 +7,13 @@ export function setup_debug(camera: Camera, gui: GUI, scene: Scene) {
   const camera_position = gui.addFolder('Camera Position');
   camera_position.add(camera.position, 'x', -30, 30, 0.1);
   camera_position.add(camera.position, 'y', -30, 30, 0.1);
-  camera_position.hide();
+  // camera_position.hide();
   // rotation wont work when u have orbit controls
   const camera_rotation = gui.addFolder('Camera Rotation');
   camera_rotation.add(camera.rotation, 'x', -3.14, 3.14, 0.001);
   camera_rotation.add(camera.rotation, 'y', -3.14, 3.14, 0.001);
   camera_rotation.add(camera.rotation, 'z', -3.14, 3.14, 0.001);
-  camera_rotation.hide();
+  // camera_rotation.hide();
 
   const galaxy = gui.addFolder('Galaxy');
   // u can use onFinishChange instead but we use these tweaks only in development, so i dont see a point

@@ -1,3 +1,4 @@
+import { Timer } from 'three/examples/jsm/Addons.js';
 import { generatePlain } from './plain';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -49,18 +50,24 @@ import {
   inner_particles,
   outer_particles,
 } from './particles';
-
-
+import { planetDesc } from './components';
 
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
 canvas.classList.add('webgl');
-document.body.appendChild(canvas);
+
+document.querySelector(".container")?.appendChild(canvas);
 
 // debug
 // note: with lil-gui you can only change properties of objects
 const gui = new GUI();
+gui.show(false)
+
 const debugObj = {};
+
+window.addEventListener("scroll", () => {
+  console.log(window.scrollY);
+});
 
 const font_loader = new FontLoader();
 font_loader.load('/fonts/typeface.json', (font) => {
@@ -89,39 +96,51 @@ const size = {
   width: window.innerWidth,
   height: window.innerHeight,
 };
-export const camera = new THREE.PerspectiveCamera(75, size.width / size.height);
-const camera_view = 100;
-// export const camera = new THREE.OrthographicCamera(
-//   (-camera_view * size.width) / size.height,
-//   (camera_view * size.width) / size.height,
-//   camera_view,
-//   -camera_view
-// );
+// export const camera = new THREE.PerspectiveCamera(50, size.width / size.height);
+const camera_view = 5;
+
+export const camera = new THREE.OrthographicCamera(
+  (-camera_view * size.width) / size.height,
+  (camera_view * size.width) / size.height,
+  camera_view,
+  -camera_view,
+);
+
 
 // camera.position.set(-100, 80, 200);
-camera.position.set(0, 40, 40);
-camera.lookAt(saturn.position);
+// camera.position.set(0, 40, 40);
+
+
 scene.add(camera);
 
 // camera helper
-// const cameraHelper = new THREE.CameraHelper(camera);
-// scene.add(cameraHelper);
+const cameraHelper = new THREE.CameraHelper(camera);
 
+scene.add(cameraHelper);
+
+
+///////////////////////////////////////////////////////////////////
 // orbit
 const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
-controls.minZoom = 0.75;
-controls.maxZoom = 10;
+controls.enableDamping = false;
+controls.minZoom = 0;
+controls.maxZoom = 1.5;
 // limit camera from top
-controls.minPolarAngle = Math.PI / 4;
+// controls.minPolarAngle = Math.PI / 4;
 // limit camera from down
-controls.maxPolarAngle = Math.PI / 2.3;
+// controls.maxPolarAngle = Math.PI / 2.3;
+controls.enableRotate = false;
+controls.enablePan = false;
+controls.enabled = true
+///////////////////////////////////////////////////////////////////
+
+
 
 // renderer
-const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
 renderer.setSize(size.width, size.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-const cursor = {
+export const cursor = {
   x: 0,
   y: 0,
 };
@@ -131,11 +150,11 @@ renderer.shadowMap.enabled = true;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 1;
 
-const clock = new THREE.Clock();
+const clock = new Timer();
 
 // animation
 const animate = () => {
-  tick(clock, controls, renderer, scene, camera);
+  tick(clock, controls, renderer, scene, camera, cursor, mercury);
   requestAnimationFrame(animate);
 };
 
@@ -219,12 +238,18 @@ solar_system_group.add(
 
 
 const galaxy = generateGalaxy(scene)
-const plain = generatePlain(scene)
+// const plain = generatePlain(scene)
 
 scene.add(
   // galaxy,
-  // solar_system_group,
+  solar_system_group,
   // lights 
   ambient_light,
-  // point_light
+  point_light
 );
+
+planetDesc(4, true)
+
+window.addEventListener('scroll', (e)=> {
+  console.log(e)
+})

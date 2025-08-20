@@ -1,3 +1,4 @@
+import type { Timer } from 'three/examples/jsm/Addons.js';
 import * as THREE from 'three';
 
 import { Camera, Clock, Scene, WebGLRenderer } from 'three';
@@ -47,17 +48,35 @@ import {
 } from './constants';
 import { generateMesh, physic_bodies, physic_mesh_count, physic_meshes, world } from './plain';
 
+import gsap from 'gsap';
 
 
-const earthWorldPos = new THREE.Vector3();
+const earthWorldPos = new THREE.Vector3()
+
+const currentPlanetWorldPos = new THREE.Vector3()
+let cameraCurrentFocus = null
+
+const cameraOffset = new THREE.Vector3(0,0,0)
+
+let cameraEase = [0,0]
+let scrollY = window.scrollY
+let scrollX = window.scrollX
+
+let angle = Math.sin(1);
+
+
 export const tick = (
-  clock: Clock,
+  clock: Timer,
   controls: OrbitControls,
   renderer: WebGLRenderer,
   scene: Scene,
-  camera: Camera
+  camera: Camera,
+  cursor: { x: number; y: number; },
+  currentPlanetFocus: THREE.Mesh
 ) => {
-  const elapsedTime = clock.getElapsedTime();
+  clock.update()
+  const elapsedTime = clock.getElapsed();
+  const deltaTime = clock.getDelta()
 
   // planets rotation around themselves
   mercury.rotation.y = elapsedTime / mercury_rotation;
@@ -95,6 +114,26 @@ export const tick = (
   moon_group.position.copy(earthWorldPos);
   moon_orbit.position.copy(earthWorldPos);
 
+
+
+  // easing animation on mouse movement
+  cameraEase[0] += (cursor.x - cameraEase[0]) * 3 * deltaTime
+  cameraEase[1] += (cursor.y - cameraEase[1]) * 3 * deltaTime
+  cameraOffset.x = cameraEase[0] + 5
+  cameraOffset.y = cameraEase[1] - 0.5
+
+
+  // locating camera on the planet
+  currentPlanetFocus.getWorldPosition(currentPlanetWorldPos)
+  controls.target.copy(currentPlanetWorldPos)
+  camera.position.x = currentPlanetWorldPos.x + Math.cos(angle + Math.PI) * 10;
+  // the reason for this big value on Z is because some part of the scene doesnt get rendered
+  // i think its because the camera gets too close to the scene - after increasing Z value
+  // we must also increase Y value to give the view some angle
+  camera.position.z = currentPlanetWorldPos.z + Math.sin(angle + Math.PI) * 280; 
+  camera.position.y = currentPlanetWorldPos.y + 80;
+
+
   // PHYSICS!! - we put all physics logic here
   world.step()
   if (physic_meshes.length > 0)
@@ -109,6 +148,7 @@ export const tick = (
 
 
 
+  // only use this if you are using orbit controls or it will mess with camera settings
   controls.update();
   renderer.render(scene, camera);
 };

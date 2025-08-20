@@ -80,7 +80,7 @@ galaxy_particles_geometry.setAttribute(
 )
 
 
-const particles_material = new THREE.PointsMaterial({ size: 0.2, sizeAttenuation: false}) 
+const particles_material = new THREE.PointsMaterial({ size: 1, sizeAttenuation: false }) 
 
 export const inner_particles = new THREE.Points(inner_particles_geometry, particles_material)
 export const outer_particles = new THREE.Points(outer_particles_geometry, particles_material)

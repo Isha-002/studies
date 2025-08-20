@@ -1,0 +1,282 @@
+{
+  "solar_system": {
+    "name": {
+      "persian": "منظومه شمسی",
+      "english": "Solar System"
+    },
+    "celestial_bodies": [
+      {
+        "order": 0,
+        "name": {
+          "persian": "خورشید",
+          "english": "Sun"
+        },
+        "type": {
+          "persian": "ستاره",
+          "english": "Star"
+        },
+        "facts": {
+          "persian": [
+            "منبع انرژی و نور منظومه شمسی",
+            "دمای سطح حدود ۵۵۰۰ درجه سانتیگراد",
+            "شامل ۹۹.۸۶٪ جرم کل منظومه شمسی",
+            "قطر آن ۱.۴ میلیون کیلومتر است",
+            "هر ثانیه ۴.۲ میلیون تن جرم به انرژی تبدیل می‌شود",
+            "عمر آن حدود ۴.۶ میلیارد سال است",
+            "دارای ۶ لایه مختلف است"
+          ],
+          "english": [
+            "Source of energy and light for the solar system",
+            "Surface temperature around 5500°C",
+            "Contains 99.86% of the solar system's mass",
+            "Diameter is 1.4 million kilometers",
+            "Converts 4.2 million tons of mass to energy per second",
+            "Age is approximately 4.6 billion years",
+            "Has 6 different layers"
+          ]
+        }
+      },
+      {
+        "order": 1,
+        "name": {
+          "persian": "عطارد",
+          "english": "Mercury"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "نزدیک‌ترین سیاره به خورشید",
+            "کوچک‌ترین سیاره منظومه شمسی",
+            "فاقد جو قابل توجه",
+            "یک سال در آن ۸۸ روز زمینی است",
+            "دمای روز ۴۳۰ درجه و شب منفی ۱۷۰ درجه سانتیگراد",
+            "هیچ قمر طبیعی ندارد",
+            "دارای کرترهای بسیار زیاد است"
+          ],
+          "english": [
+            "Closest planet to the Sun",
+            "Smallest planet in the solar system",
+            "Has no significant atmosphere",
+            "One year lasts 88 Earth days",
+            "Day temperature 430°C, night temperature -170°C",
+            "Has no natural satellites",
+            "Has numerous impact craters"
+          ]
+        }
+      },
+      {
+        "order": 2,
+        "name": {
+          "persian": "زهره",
+          "english": "Venus"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "داغ‌ترین سیاره منظومه شمسی",
+            "در جهت مخالف سایر سیارات می‌چرخد",
+            "ستاره صبح و عصر نامیده می‌شود",
+            "دمای سطح ۴۶۲ درجه سانتیگراد",
+            "فشار جو آن ۹۰ برابر زمین است",
+            "یک روز در آن ۲۴۳ روز زمینی است",
+            "جو آن از دی‌اکسید کربن تشکیل شده"
+          ],
+          "english": [
+            "Hottest planet in the solar system",
+            "Rotates backwards compared to other planets",
+            "Called the morning and evening star",
+            "Surface temperature is 462°C",
+            "Atmospheric pressure is 90 times that of Earth",
+            "One day lasts 243 Earth days",
+            "Atmosphere is composed of carbon dioxide"
+          ]
+        }
+      },
+      {
+        "order": 3,
+        "name": {
+          "persian": "زمین",
+          "english": "Earth"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "تنها سیاره شناخته شده دارای حیات",
+            "دارای یک قمر طبیعی (ماه)",
+            "۷۱٪ سطح آن پوشیده از آب است",
+            "عمر آن ۴.۵ میلیارد سال است",
+            "دارای میدان مغناطیسی محافظ",
+            "جو شامل ۷۸٪ نیتروژن و ۲۱٪ اکسیژن",
+            "قطب شمال و جنوب مغناطیسی دارد",
+            "دارای صفحات تکتونیک فعال"
+          ],
+          "english": [
+            "Only known planet with life",
+            "Has one natural satellite (Moon)",
+            "71% of its surface is covered by water",
+            "Age is 4.5 billion years",
+            "Has a protective magnetic field",
+            "Atmosphere is 78% nitrogen and 21% oxygen",
+            "Has magnetic north and south poles",
+            "Has active tectonic plates"
+          ]
+        }
+      },
+      {
+        "order": 4,
+        "name": {
+          "persian": "مریخ",
+          "english": "Mars"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "سیاره سرخ نام دارد",
+            "دارای دو قمر کوچک: فوبوس و دیموس",
+            "بزرگ‌ترین کوه منظومه شمسی در آن قرار دارد"
+          ],
+          "english": [
+            "Known as the Red Planet",
+            "Has two small moons: Phobos and Deimos",
+            "Home to the largest mountain in the solar system"
+          ]
+        }
+      },
+      {
+        "order": 5,
+        "name": {
+          "persian": "مشتری",
+          "english": "Jupiter"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "بزرگ‌ترین سیاره منظومه شمسی",
+            "دارای بیش از ۷۹ قمر شناخته شده",
+            "لکه بزرگ سرخ آن طوفانی است بزرگ‌تر از زمین"
+          ],
+          "english": [
+            "Largest planet in the solar system",
+            "Has over 79 known moons",
+            "Its Great Red Spot is a storm larger than Earth"
+          ]
+        }
+      },
+      {
+        "order": 6,
+        "name": {
+          "persian": "زحل",
+          "english": "Saturn"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "مشهور به حلقه‌های زیبایش",
+            "چگالی کمتر از آب دارد",
+            "دارای ۸۲ قمر شناخته شده"
+          ],
+          "english": [
+            "Famous for its beautiful rings",
+            "Has a density less than water",
+            "Has 82 known moons"
+          ]
+        }
+      },
+      {
+        "order": 7,
+        "name": {
+          "persian": "اورانوس",
+          "english": "Uranus"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "بر پهلو می‌چرخد",
+            "دارای حلقه‌های کم‌نور",
+            "سردترین سیاره منظومه شمسی"
+          ],
+          "english": [
+            "Rotates on its side",
+            "Has faint rings",
+            "Coldest planet in the solar system"
+          ]
+        }
+      },
+      {
+        "order": 8,
+        "name": {
+          "persian": "نپتون",
+          "english": "Neptune"
+        },
+        "type": {
+          "persian": "سیاره",
+          "english": "Planet"
+        },
+        "facts": {
+          "persian": [
+            "دورترین سیاره از خورشید",
+            "دارای قوی‌ترین بادهای منظومه شمسی",
+            "رنگ آبی زیبایی دارد"
+          ],
+          "english": [
+            "Farthest planet from the Sun",
+            "Has the strongest winds in the solar system",
+            "Has a beautiful blue color"
+          ]
+        }
+      },
+      {
+        "order": 9,
+        "name": {
+          "persian": "پلوتو",
+          "english": "Pluto"
+        },
+        "type": {
+          "persian": "سیاره کوتوله",
+          "english": "Dwarf Planet"
+        },
+        "facts": {
+          "persian": [
+            "از ۲۰۰۶ به عنوان سیاره کوتوله طبقه‌بندی شد",
+            "در کمربند کایپر قرار دارد",
+            "دارای پنج قمر شناخته شده",
+            "قطر آن حدود ۲۳۷۰ کیلومتر است",
+            "یک سال در آن ۲۴۸ سال زمینی است",
+            "دمای سطح منفی ۲۳۰ درجه سانتیگراد",
+            "جو نازکی از نیتروژن دارد"
+          ],
+          "english": [
+            "Reclassified as a dwarf planet in 2006",
+            "Located in the Kuiper Belt",
+            "Has five known moons",
+            "Diameter is approximately 2370 kilometers",
+            "One year lasts 248 Earth years",
+            "Surface temperature is -230°C",
+            "Has a thin atmosphere of nitrogen"
+          ]
+        }
+      }
+    ]
+  }
+}
