@@ -115,3 +115,8 @@ overwriten, to prevent add !important or place it and end of css file*/
 .hide {
   display: none !important;
 }
+.disabled {
+  animation: none;
+  opacity: 0.3;         
+  cursor: not-allowed !important;
+}

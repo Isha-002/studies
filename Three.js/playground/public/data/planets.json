@@ -134,6 +134,37 @@
       {
         "order": 4,
         "name": {
+          "persian": "ماه",
+          "english": "Moon"
+        },
+        "type": {
+          "persian": "قمر",
+          "english": "Satellite"
+        },
+        "facts": {
+          "persian": [
+            "تنها قمر طبیعی زمین",
+            "چهارمین جرم آسمانی بزرگ منظومه شمسی درونی",
+            "فاصله از زمین ۳۸۴,۴۰۰ کیلومتر",
+            "قطر آن ۳,۴۷۴ کیلومتر است",
+            "باعث پدیده جزر و مد در زمین می‌شود",
+            "همیشه یک رو به زمین دارد",
+            "عمر آن ۴.۵ میلیارد سال است"
+          ],
+          "english": [
+            "Earth's only natural satellite",
+            "Fifth largest natural satellite in the solar system",
+            "Distance from Earth is 384,400 kilometers",
+            "Diameter is 3,474 kilometers",
+            "Causes tides on Earth",
+            "Always shows the same face to Earth",
+            "Age is 4.5 billion years"
+          ]
+        }
+      },
+      {
+        "order": 5,
+        "name": {
           "persian": "مریخ",
           "english": "Mars"
         },
@@ -145,17 +176,25 @@
           "persian": [
             "سیاره سرخ نام دارد",
             "دارای دو قمر کوچک: فوبوس و دیموس",
-            "بزرگ‌ترین کوه منظومه شمسی در آن قرار دارد"
+            "بزرگ‌ترین کوه منظومه شمسی در آن قرار دارد",
+            "دمای متوسط منفی ۶۳ درجه سانتیگراد",
+            "یک روز در آن ۲۴.۶ ساعت است",
+            "دارای قطب‌های یخی",
+            "جو نازکی از دی‌اکسید کربن دارد"
           ],
           "english": [
             "Known as the Red Planet",
             "Has two small moons: Phobos and Deimos",
-            "Home to the largest mountain in the solar system"
+            "Home to the largest mountain in the solar system",
+            "Average temperature is -63°C",
+            "One day lasts 24.6 hours",
+            "Has polar ice caps",
+            "Has a thin atmosphere of carbon dioxide"
           ]
         }
       },
       {
-        "order": 5,
+        "order": 6,
         "name": {
           "persian": "مشتری",
           "english": "Jupiter"
@@ -168,17 +207,25 @@
           "persian": [
             "بزرگ‌ترین سیاره منظومه شمسی",
             "دارای بیش از ۷۹ قمر شناخته شده",
-            "لکه بزرگ سرخ آن طوفانی است بزرگ‌تر از زمین"
+            "لکه بزرگ سرخ آن طوفانی است بزرگ‌تر از زمین",
+            "عمدتاً از هیدروژن و هلیوم تشکیل شده",
+            "محافظ زمین در برابر سیارک‌ها و دنباله‌دارها",
+            "دارای حلقه‌های نازک",
+            "جرم آن بیش از تمام سیارات دیگر است"
           ],
           "english": [
             "Largest planet in the solar system",
             "Has over 79 known moons",
-            "Its Great Red Spot is a storm larger than Earth"
+            "Its Great Red Spot is a storm larger than Earth",
+            "Composed mainly of hydrogen and helium",
+            "Protects Earth from asteroids and comets",
+            "Has faint rings",
+            "Mass exceeds all other planets combined"
           ]
         }
       },
       {
-        "order": 6,
+        "order": 7,
         "name": {
           "persian": "زحل",
           "english": "Saturn"
@@ -191,17 +238,25 @@
           "persian": [
             "مشهور به حلقه‌های زیبایش",
             "چگالی کمتر از آب دارد",
-            "دارای ۸۲ قمر شناخته شده"
+            "دارای ۸۲ قمر شناخته شده",
+            "دومین سیاره بزرگ منظومه شمسی",
+            "عمدتاً از هیدروژن و هلیوم تشکیل شده",
+            "حلقه‌هایش از یخ و سنگ‌های کوچک ساخته شده",
+            "قمر تیتان آن جو غلیظی دارد"
           ],
           "english": [
             "Famous for its beautiful rings",
             "Has a density less than water",
-            "Has 82 known moons"
+            "Has 82 known moons",
+            "Second largest planet in the solar system",
+            "Composed mainly of hydrogen and helium",
+            "Rings are made of ice and small rocks",
+            "Moon Titan has a thick atmosphere"
           ]
         }
       },
       {
-        "order": 7,
+        "order": 8,
         "name": {
           "persian": "اورانوس",
           "english": "Uranus"
@@ -214,17 +269,25 @@
           "persian": [
             "بر پهلو می‌چرخد",
             "دارای حلقه‌های کم‌نور",
-            "سردترین سیاره منظومه شمسی"
+            "سردترین سیاره منظومه شمسی",
+            "رنگ آبی-سبز دارد",
+            "دارای ۲۷ قمر شناخته شده",
+            "محور چرخش ۹۸ درجه کج است",
+            "عمدتاً از آب، متان و آمونیاک تشکیل شده"
           ],
           "english": [
             "Rotates on its side",
             "Has faint rings",
-            "Coldest planet in the solar system"
+            "Coldest planet in the solar system",
+            "Has a blue-green color",
+            "Has 27 known moons",
+            "Rotational axis is tilted 98 degrees",
+            "Composed mainly of water, methane, and ammonia"
           ]
         }
       },
       {
-        "order": 8,
+        "order": 9,
         "name": {
           "persian": "نپتون",
           "english": "Neptune"
@@ -237,43 +300,20 @@
           "persian": [
             "دورترین سیاره از خورشید",
             "دارای قوی‌ترین بادهای منظومه شمسی",
-            "رنگ آبی زیبایی دارد"
+            "رنگ آبی زیبایی دارد",
+            "دارای ۱۴ قمر شناخته شده",
+            "یک سال در آن ۱۶۵ سال زمینی است",
+            "دمای سطح منفی ۲۱۸ درجه سانتیگراد",
+            "بادهایش تا ۲۱۰۰ کیلومتر در ساعت می‌رسد"
           ],
           "english": [
             "Farthest planet from the Sun",
             "Has the strongest winds in the solar system",
-            "Has a beautiful blue color"
-          ]
-        }
-      },
-      {
-        "order": 9,
-        "name": {
-          "persian": "پلوتو",
-          "english": "Pluto"
-        },
-        "type": {
-          "persian": "سیاره کوتوله",
-          "english": "Dwarf Planet"
-        },
-        "facts": {
-          "persian": [
-            "از ۲۰۰۶ به عنوان سیاره کوتوله طبقه‌بندی شد",
-            "در کمربند کایپر قرار دارد",
-            "دارای پنج قمر شناخته شده",
-            "قطر آن حدود ۲۳۷۰ کیلومتر است",
-            "یک سال در آن ۲۴۸ سال زمینی است",
-            "دمای سطح منفی ۲۳۰ درجه سانتیگراد",
-            "جو نازکی از نیتروژن دارد"
-          ],
-          "english": [
-            "Reclassified as a dwarf planet in 2006",
-            "Located in the Kuiper Belt",
-            "Has five known moons",
-            "Diameter is approximately 2370 kilometers",
-            "One year lasts 248 Earth years",
-            "Surface temperature is -230°C",
-            "Has a thin atmosphere of nitrogen"
+            "Has a beautiful blue color",
+            "Has 14 known moons",
+            "One year lasts 165 Earth years",
+            "Surface temperature is -218°C",
+            "Winds reach up to 2100 km/h"
           ]
         }
       }

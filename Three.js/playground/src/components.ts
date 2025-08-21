@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 
 
+
 let planetData: any[] | null = null;
 let fetchError: Error | null = null;
 
@@ -46,7 +47,7 @@ export async function planetDesc(order: number, persian: boolean) {
 
   if (prev_container) {
     (prev_container.children[0] as HTMLElement).innerText = name;
-    const main = prev_container.children[1] as HTMLElement
+    const main = prev_container.querySelector("main") as HTMLElement 
     while (main.firstChild) {
       main.removeChild(main.firstChild)
     }
@@ -80,8 +81,11 @@ export async function planetDesc(order: number, persian: boolean) {
 }
 
 
+// img element with id "2" is previous button - img with id "1" is ui visibility toggle - img with id "0" is next button 
 const switchIcons = ["/icons/right.svg" ,"/icons/visibility.png", "/icons/left.svg"] 
-export function switchKeys() {
+
+export function switchKeys(currentPlanet: number, persian: boolean) {
+
   const prev_container = document.querySelector(".switch-container") 
 
   if (prev_container) {
@@ -100,14 +104,15 @@ export function switchKeys() {
 
       if(element.id !== "1") {
         element.addEventListener('click', () => {
-          console.log("first")
           gsap.fromTo(
             element, 
             { scale: 0.2 }, 
             { scale: 0.4, duration: 0.6, ease: "elastic" })
         })
       }
-
+      if (element?.id === "2" && currentPlanet === 0) {
+        element.classList.add("disabled")
+      }
       
       container.appendChild(element)
     })

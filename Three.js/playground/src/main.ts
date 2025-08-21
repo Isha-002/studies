@@ -52,6 +52,22 @@ import {
 } from './particles';
 import { planetDesc, switchKeys } from './components';
 
+// global variables
+let isPersian = true
+let currentPlanet = 0
+const solar_objects = [sun, mercury, venus, earth, moon, mars, jupiter, saturn, uranus, neptune]
+
+
+// global variables
+// initialization functions
+switchKeys(currentPlanet, isPersian)
+planetDesc(currentPlanet, isPersian);
+// initialization functions
+
+
+
+
+
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
 canvas.classList.add('webgl');
@@ -154,7 +170,7 @@ const clock = new Timer();
 
 // animation
 const animate = () => {
-  tick(clock, controls, renderer, scene, camera, cursor, mercury);
+  tick(clock, controls, renderer, scene, camera, cursor, solar_objects[currentPlanet]);
   requestAnimationFrame(animate);
 };
 
@@ -248,13 +264,13 @@ scene.add(
   point_light
 );
 
-planetDesc(4, true)
+
 
 window.addEventListener('scroll', (e)=> {
   console.log(e)
 })
 
-switchKeys()
+
 
 
 
@@ -263,7 +279,7 @@ let visible = true
 const visible_button = document.getElementById("1")
 const invisIcon = "/icons/invis.png"
 const visibleIcon = "/icons/visibility.png"
-console.log(visible_button)
+
 // placing ui variable outside the event listener doesnt work cuz its always null
 visible_button?.addEventListener("click", () => {
   const ui = document.querySelector(".planet-desc") as HTMLElement | null
@@ -287,3 +303,45 @@ visible_button?.addEventListener("click", () => {
     visible_button.style.scale = "0.6"
   }
 })
+
+// handling next/prev planet buttons 
+const next_button = document.getElementById("0");
+const prev_button = document.getElementById("2");
+
+function updateButtons() {
+  if (currentPlanet <= 0) {
+    prev_button?.classList.add("disabled");
+  } else {
+    prev_button?.classList.remove("disabled");
+  }
+
+  if (currentPlanet >= solar_objects.length - 1) {
+    next_button?.classList.add("disabled");
+  } else {
+    next_button?.classList.remove("disabled");
+  }
+}
+
+next_button?.addEventListener("click", () => {
+  if (currentPlanet < solar_objects.length - 1) {
+    // be very careful with this planetDesc() function 
+    // if u use it before changin current planet it results in strange behaviour
+    currentPlanet += 1
+    planetDesc(currentPlanet, true)
+    updateButtons();
+  }
+});
+
+prev_button?.addEventListener("click", () => {
+  if (currentPlanet > 0) {
+    // be very careful with this planetDesc() function 
+    // if u use it before changin current planet it results in strange behaviour
+    currentPlanet -= 1;
+    planetDesc(currentPlanet, true)
+    updateButtons();
+  }
+});
+
+// run once only - this function must be called after u set listeners for ui buttons (next/prev)
+updateButtons();
+
