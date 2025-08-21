@@ -50,7 +50,7 @@ import {
   inner_particles,
   outer_particles,
 } from './particles';
-import { planetDesc } from './components';
+import { planetDesc, switchKeys } from './components';
 
 export const scene = new THREE.Scene();
 const canvas = document.createElement('canvas');
@@ -252,4 +252,38 @@ planetDesc(4, true)
 
 window.addEventListener('scroll', (e)=> {
   console.log(e)
+})
+
+switchKeys()
+
+
+
+// handling ui visibility
+let visible = true
+const visible_button = document.getElementById("1")
+const invisIcon = "/icons/invis.png"
+const visibleIcon = "/icons/visibility.png"
+console.log(visible_button)
+// placing ui variable outside the event listener doesnt work cuz its always null
+visible_button?.addEventListener("click", () => {
+  const ui = document.querySelector(".planet-desc") as HTMLElement | null
+  ui?.classList.toggle("hide")
+  visible = !visible
+
+  gsap.fromTo(
+    visible_button, 
+    { scale: 0.8 }, 
+    { scale: 1, duration: 0.6, ease: "elastic" }
+  );
+})
+
+visible_button?.addEventListener("click", () => {
+  if (visible) {
+    visible_button?.setAttribute('src', visibleIcon)
+    visible_button.style.scale = "0.66"
+  }  
+  if (!visible) {
+    visible_button?.setAttribute('src', invisIcon)
+    visible_button.style.scale = "0.6"
+  }
 })

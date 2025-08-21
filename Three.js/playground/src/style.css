@@ -12,6 +12,7 @@
   padding: 0;
 }
 
+
 /* html, body {
   overflow: hidden;
 } */
@@ -58,27 +59,59 @@ html {
   gap: 1rem;
 }
 
-
 .glass {
-  grid-row-start: 2;    
-  grid-row-end: span 3;
-
   background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white !important;
+}
+
+
+
+.planet-desc {
+  grid-row-start: 2;    
+  grid-row-end: span 3;
+
+  align-self: center;
+
   width: 400px;
   height: max-content;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  color: white !important;
   padding: 1.5rem;
+
 }
 
-.glass main {
+.planet-desc main {
   line-height: 2.5rem;
 }
 
+.switch-container {
+  pointer-events: all;
+  grid-column: 2 / span 2;  
+  grid-row: 5;
+
+  place-self: center;
+
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  height: 50%;
+  width: fit-content;
+  margin-top: 3rem;
+}
+
+.switch-container img {
+  scale: 0.4;
+  cursor: pointer;
+}
+
+/* carefull if u place this class before the actuall styles, it will get 
+overwriten, to prevent add !important or place it and end of css file*/
+.hide {
+  display: none !important;
+}

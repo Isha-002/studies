@@ -1,5 +1,10 @@
+import gsap from 'gsap';
+
+
 let planetData: any[] | null = null;
 let fetchError: Error | null = null;
+
+
 
 async function fetchPlanets() {
   return fetch("/data/planets.json")
@@ -37,7 +42,7 @@ export async function planetDesc(order: number, persian: boolean) {
   const name: string = persian ? data.name.persian : data.name.english
   const fact: string[] = persian ? data.facts.persian : data.facts.english
 
-  const prev_container = document.querySelector(".glass");
+  const prev_container = document.querySelector(".planet-desc");
 
   if (prev_container) {
     (prev_container.children[0] as HTMLElement).innerText = name;
@@ -45,14 +50,14 @@ export async function planetDesc(order: number, persian: boolean) {
     while (main.firstChild) {
       main.removeChild(main.firstChild)
     }
-    fact.map((v, _)=> {
+    fact.map((v, _) => {
       const element = document.createElement("li")
       element.innerText = v
       main.appendChild(element)
     })
   } else {
     const container = document.createElement("div");
-    container.classList.add("glass");
+    container.classList.add("glass", "planet-desc");
 
     const title = document.createElement("h2");
     title.innerText = name;
@@ -69,10 +74,43 @@ export async function planetDesc(order: number, persian: boolean) {
       planetDesc.appendChild(element)
     })
 
-    
-    
-
     container.append(title, hr, planetDesc);
     document.querySelector(".overlay")?.appendChild(container);
+  }
+}
+
+
+const switchIcons = ["/icons/right.svg" ,"/icons/visibility.png", "/icons/left.svg"] 
+export function switchKeys() {
+  const prev_container = document.querySelector(".switch-container") 
+
+  if (prev_container) {
+    return
+  } else {
+    const container = document.createElement("div")
+    container.classList.add("glass","switch-container");
+    document.querySelector(".overlay")?.appendChild(container)
+
+    switchIcons.map((v, i) => {
+      const element = document.createElement("img")
+      element.src = v
+      // we give this id to the buttons so we can work with visibility which is element with id "1"
+      element.id = i.toString()
+      if(element.id === "1") { element.style.scale = "0.65" }
+
+      if(element.id !== "1") {
+        element.addEventListener('click', () => {
+          console.log("first")
+          gsap.fromTo(
+            element, 
+            { scale: 0.2 }, 
+            { scale: 0.4, duration: 0.6, ease: "elastic" })
+        })
+      }
+
+      
+      container.appendChild(element)
+    })
+
   }
 }
