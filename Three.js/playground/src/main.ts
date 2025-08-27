@@ -55,7 +55,20 @@ import { planetDesc, sideKeys, switchKeys } from './components';
 // global variables
 let isPersian = true
 let currentPlanet = 0
-const solar_objects = [sun, mercury, venus, earth, moon, mars, jupiter, saturn, uranus, neptune]
+const solar_objects = [
+  { obj: sun, zoom: 0.3 },
+  { obj: mercury, zoom: 2 },
+  { obj: venus, zoom: 2 },
+  { obj: earth, zoom: 2 },
+  { obj: moon, zoom: 5 },
+  { obj: mars, zoom: 2 },
+  { obj: jupiter, zoom: 1 },
+  { obj: saturn, zoom: 4 },
+  { obj: uranus, zoom: 3 },
+  { obj: neptune, zoom: 3 }
+];
+
+
 
 
 // global variables
@@ -140,8 +153,9 @@ scene.add(cameraHelper);
 // orbit
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = false;
-controls.minZoom = 0;
-controls.maxZoom = 1.5;
+controls.minZoom = 0.05;
+// max zoom is set to be optimal for sun view it will change for other planets
+controls.maxZoom = 0.75;
 // limit camera from top
 // controls.minPolarAngle = Math.PI / 4;
 // limit camera from down
@@ -323,6 +337,16 @@ function updateButtons() {
   }
 }
 
+function updateCameraZoom(zoom: number) {
+  camera.zoom = zoom;
+  camera.updateProjectionMatrix();
+  if (solar_objects[currentPlanet].obj === sun) {
+  controls.maxZoom = 0.75
+  } else {
+    controls.maxZoom = 1.75
+  }
+}
+
 next_button?.addEventListener("click", () => {
   if (currentPlanet < solar_objects.length - 1) {
     // be very careful with this planetDesc() function 
@@ -330,6 +354,7 @@ next_button?.addEventListener("click", () => {
     currentPlanet += 1
     planetDesc(currentPlanet, isPersian)
     updateButtons();
+    updateCameraZoom(solar_objects[currentPlanet].zoom)
   }
 });
 
@@ -340,11 +365,15 @@ prev_button?.addEventListener("click", () => {
     currentPlanet -= 1;
     planetDesc(currentPlanet, isPersian)
     updateButtons();
+    updateCameraZoom(solar_objects[currentPlanet].zoom)
   }
 });
 
 // run once only - this function must be called after u set listeners for ui buttons (next/prev)
 updateButtons();
+// we use this function here to set the initial zoom when user loads in first
+updateCameraZoom(solar_objects[currentPlanet].zoom)
+
 
 
 // handling language change
@@ -354,5 +383,18 @@ languageBtn?.addEventListener('click', () => {
   sideKeys(isPersian)
   planetDesc(currentPlanet, isPersian);
 })
+
+// handle solar system sidekey
+const solarSidekey = document.querySelector(".sidekeys-container button:nth-of-type(2)");
+let zoomToggled = false
+solarSidekey?.addEventListener('click', () => {
+  if (!zoomToggled) {
+    updateCameraZoom(0.05); 
+  } else {
+    updateCameraZoom(solar_objects[currentPlanet].zoom); 
+  }
+  zoomToggled = !zoomToggled; 
+})
+
 
 

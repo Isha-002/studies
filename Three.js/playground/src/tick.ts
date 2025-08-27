@@ -70,9 +70,9 @@ export const tick = (
   controls: OrbitControls,
   renderer: WebGLRenderer,
   scene: Scene,
-  camera: Camera,
-  cursor: { x: number; y: number; },
-  currentPlanetFocus: THREE.Mesh
+  camera: THREE.OrthographicCamera,
+  cursor: { x: number, y: number },
+  currentPlanetFocus: { obj: THREE.Mesh, zoom: number }
 ) => {
   clock.update()
   const elapsedTime = clock.getElapsed();
@@ -124,7 +124,7 @@ export const tick = (
 
 
   // locating camera on the planet
-  currentPlanetFocus.getWorldPosition(currentPlanetWorldPos)
+  currentPlanetFocus.obj.getWorldPosition(currentPlanetWorldPos)
   controls.target.copy(currentPlanetWorldPos)
   camera.position.x = currentPlanetWorldPos.x + Math.cos(angle + Math.PI) * 10;
   // the reason for this big value on Z is because some part of the scene doesnt get rendered
