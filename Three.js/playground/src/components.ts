@@ -43,9 +43,10 @@ export async function planetDesc(order: number, persian: boolean) {
   const name: string = persian ? data.name.persian : data.name.english
   const fact: string[] = persian ? data.facts.persian : data.facts.english
 
-  const prev_container = document.querySelector(".planet-desc");
+  const prev_container = document.querySelector(".planet-desc") as HTMLDivElement;
 
   if (prev_container) {
+    persian ? prev_container.style.direction = 'rtl' : prev_container.style.direction = 'ltr';
     (prev_container.children[0] as HTMLElement).innerText = name;
     const main = prev_container.querySelector("main") as HTMLElement 
     while (main.firstChild) {
@@ -59,6 +60,7 @@ export async function planetDesc(order: number, persian: boolean) {
   } else {
     const container = document.createElement("div");
     container.classList.add("glass", "planet-desc");
+    persian ? container.style.direction = 'rtl' : container.style.direction = 'ltr'
 
     const title = document.createElement("h2");
     title.innerText = name;
@@ -118,4 +120,48 @@ export function switchKeys(currentPlanet: number, persian: boolean) {
     })
 
   }
+}
+
+
+// side keys must contain: setting - solar system - language
+// we add an empty item to make .map() iterate 3 times
+const sideKeyIcons = ["/icons/settings.png", "/icons/orbit.png", ""]
+export function sideKeys(persian: boolean) {
+
+  const prev_container = document.querySelector(".sidekeys-container") 
+
+  if (prev_container) {
+    const languageBtn = document.getElementById("changeLanguage")
+    if (languageBtn)
+    languageBtn.textContent = persian ? "En" : "Fa"
+    return
+  } else {
+    const container = document.createElement("div")
+    container.classList.add("glass","sidekeys-container");
+    document.querySelector(".overlay")?.appendChild(container)
+
+    sideKeyIcons.map((v, i) => {
+
+      if (i !== 2) {
+        const btn = document.createElement("button")
+        const element = document.createElement("img")
+        element.src = v
+        element.width = 35
+        element.height = 35
+        btn.appendChild(element)
+        container.appendChild(btn)
+
+        element.addEventListener('click', () => {
+          gsap.to(element, { rotate: "+=180" })
+        })
+      }
+      if (i === 2) {
+        const btn = document.createElement("button")
+        btn.id = "changeLanguage"
+        btn.textContent = persian ? "En" : "Fa"
+        container.appendChild(btn)
+      }
+    })
+  }
+
 }

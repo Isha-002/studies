@@ -50,7 +50,7 @@ import {
   inner_particles,
   outer_particles,
 } from './particles';
-import { planetDesc, switchKeys } from './components';
+import { planetDesc, sideKeys, switchKeys } from './components';
 
 // global variables
 let isPersian = true
@@ -59,9 +59,10 @@ const solar_objects = [sun, mercury, venus, earth, moon, mars, jupiter, saturn, 
 
 
 // global variables
-// initialization functions
+// ui initialization
 switchKeys(currentPlanet, isPersian)
-planetDesc(currentPlanet, isPersian);
+planetDesc(currentPlanet, isPersian)
+sideKeys(isPersian)
 // initialization functions
 
 
@@ -266,9 +267,7 @@ scene.add(
 
 
 
-window.addEventListener('scroll', (e)=> {
-  console.log(e)
-})
+
 
 
 
@@ -283,6 +282,8 @@ const visibleIcon = "/icons/visibility.png"
 // placing ui variable outside the event listener doesnt work cuz its always null
 visible_button?.addEventListener("click", () => {
   const ui = document.querySelector(".planet-desc") as HTMLElement | null
+  const sideKeys = document.querySelector(".sidekeys-container") as HTMLElement | null
+  sideKeys?.classList.toggle("hide")
   ui?.classList.toggle("hide")
   visible = !visible
 
@@ -327,7 +328,7 @@ next_button?.addEventListener("click", () => {
     // be very careful with this planetDesc() function 
     // if u use it before changin current planet it results in strange behaviour
     currentPlanet += 1
-    planetDesc(currentPlanet, true)
+    planetDesc(currentPlanet, isPersian)
     updateButtons();
   }
 });
@@ -337,11 +338,21 @@ prev_button?.addEventListener("click", () => {
     // be very careful with this planetDesc() function 
     // if u use it before changin current planet it results in strange behaviour
     currentPlanet -= 1;
-    planetDesc(currentPlanet, true)
+    planetDesc(currentPlanet, isPersian)
     updateButtons();
   }
 });
 
 // run once only - this function must be called after u set listeners for ui buttons (next/prev)
 updateButtons();
+
+
+// handling language change
+const languageBtn = document.getElementById("changeLanguage")
+languageBtn?.addEventListener('click', () => {
+  isPersian = !isPersian
+  sideKeys(isPersian)
+  planetDesc(currentPlanet, isPersian);
+})
+
 
