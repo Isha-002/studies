@@ -72,16 +72,16 @@ let isMobile = {
 let isPersian = true 
 let currentPlanet = 0
 const solar_objects = [
-  { obj: sun, zoom: 0.3 },
-  { obj: mercury, zoom: 2 },
-  { obj: venus, zoom: 2 },
-  { obj: earth, zoom: 2 },
-  { obj: moon, zoom: 5 },
-  { obj: mars, zoom: 2 },
-  { obj: jupiter, zoom: 1 },
-  { obj: saturn, zoom: 4 },
-  { obj: uranus, zoom: 3 },
-  { obj: neptune, zoom: 3 }
+  { obj: sun,       zoom: 0.3, mobileZoom: 0.4  },
+  { obj: mercury,   zoom: 2,   mobileZoom: 0.8  },
+  { obj: venus,     zoom: 2,   mobileZoom: 1  },
+  { obj: earth,     zoom: 2,   mobileZoom: 0.7  },
+  { obj: moon,      zoom: 5,   mobileZoom: 3  },
+  { obj: mars,      zoom: 2,   mobileZoom: 1.5  },
+  { obj: jupiter,   zoom: 1,   mobileZoom: 0.7  },
+  { obj: saturn,    zoom: 4,   mobileZoom: 0.6  },
+  { obj: uranus,    zoom: 3,   mobileZoom: 1  },
+  { obj: neptune,   zoom: 3,   mobileZoom: 1  }
 ];
 
 
@@ -372,7 +372,8 @@ next_button?.addEventListener("click", () => {
     currentPlanet += 1
     planetDesc(currentPlanet, isPersian, isMobile.value)
     updateButtons();
-    updateCameraZoom(solar_objects[currentPlanet].zoom)
+    const initialZoomUpdate = isMobile ? solar_objects[currentPlanet].mobileZoom : solar_objects[currentPlanet].zoom
+    updateCameraZoom(initialZoomUpdate)
   }
 });
 
@@ -383,14 +384,16 @@ prev_button?.addEventListener("click", () => {
     currentPlanet -= 1;
     planetDesc(currentPlanet, isPersian, isMobile.value)
     updateButtons();
-    updateCameraZoom(solar_objects[currentPlanet].zoom)
+    const initialZoomUpdate = isMobile ? solar_objects[currentPlanet].mobileZoom : solar_objects[currentPlanet].zoom
+    updateCameraZoom(initialZoomUpdate)
   }
 });
 
 // run once only - this function must be called after u set listeners for ui buttons (next/prev)
 updateButtons();
 // we use this function here to set the initial zoom when user loads in first
-updateCameraZoom(solar_objects[currentPlanet].zoom)
+const initialZoomUpdate = isMobile ? solar_objects[currentPlanet].mobileZoom : solar_objects[currentPlanet].zoom
+updateCameraZoom(initialZoomUpdate)
 
 
 
@@ -409,10 +412,12 @@ solarSidekey?.addEventListener('click', () => {
   if (!zoomToggled) {
     updateCameraZoom(0.05); 
   } else {
-    updateCameraZoom(solar_objects[currentPlanet].zoom); 
+    const initialZoomUpdate = isMobile ? solar_objects[currentPlanet].mobileZoom : solar_objects[currentPlanet].zoom
+    updateCameraZoom(initialZoomUpdate)
   }
   zoomToggled = !zoomToggled; 
 })
 
 
-
+// KNOWN bugs:
+// 1. when reach breakpoints we recreate components and this causes the listeners to be removed but not created again - im too lazy to fix this because i have to rewrite all of this code using classes so i may wait for 
