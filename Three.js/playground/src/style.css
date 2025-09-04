@@ -12,6 +12,13 @@
   padding: 0;
 }
 
+/* removes default touch blue color on active state */
+img {
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+
 
 /* html, body {
   overflow: hidden;
@@ -42,6 +49,7 @@ html {
   outline: none;
 }
 
+/* - */
 .overlay {
   box-sizing: border-box;
   position: absolute;
@@ -162,4 +170,45 @@ overwriten, to prevent add !important or place it and end of css file*/
   animation: none;
   opacity: 0.3;         
   cursor: not-allowed !important;
+}
+
+
+
+/* responsive */
+@media (max-width: 1000px) {
+  .overlay {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); 
+    grid-template-rows: repeat(5, minmax(0, 1fr)); 
+    padding: 1rem 1rem;
+  }
+
+  .switch-container {
+    grid-row: 5;
+    grid-column: auto;
+    width: 100%;
+    height: 40%;
+    gap: 0.75rem;
+    margin-top: env(safe-area-inset-bottom);
+  }
+
+  .planet-desc main {
+    line-height: 2rem;
+    font-size: clamp(14px, 2vw, 18px);
+  }
+
+  .planet-desc {
+    width: auto;
+  }
+}
+
+@media (min-width: 500px) and (max-width: 1000px)  {
+  .planet-desc {
+    line-height: 2.5rem;
+    place-self: center;
+    width: clamp(400px, 50%, 700px);
+  }
+  .switch-container {
+    width: fit-content;
+    
+  }
 }

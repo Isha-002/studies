@@ -53,7 +53,23 @@ import {
 import { planetDesc, sideKeys, switchKeys } from './components';
 
 // global variables
-let isPersian = true
+
+// Getter/Setter functions: get → runs when we read the property - set → runs when we write to the property
+let isMobile = {
+  _value: window.innerWidth <= 1000 ? true : false,
+  set value(newValue: boolean) {
+    if (this._value !== newValue) {
+    switchKeys(currentPlanet, isPersian, newValue)
+    planetDesc(currentPlanet, isPersian, newValue)
+    sideKeys(isPersian, newValue)
+    }
+    this._value = newValue
+  },
+  get value() {
+    return this._value;
+  }
+}
+let isPersian = true 
 let currentPlanet = 0
 const solar_objects = [
   { obj: sun, zoom: 0.3 },
@@ -73,9 +89,9 @@ const solar_objects = [
 
 // global variables
 // ui initialization
-switchKeys(currentPlanet, isPersian)
-planetDesc(currentPlanet, isPersian)
-sideKeys(isPersian)
+switchKeys(currentPlanet, isPersian, isMobile.value)
+planetDesc(currentPlanet, isPersian, isMobile.value)
+sideKeys(isPersian, isMobile.value)
 // initialization functions
 
 
@@ -223,6 +239,9 @@ window.addEventListener('resize', () => {
 
   // update canvas
   renderer.setSize(size.width, size.height);
+
+
+  isMobile.value = window.innerWidth <= 1000 ? true : false
 });
 
 // const rgbe_l2oader = new RGBELoader().load('/twilight_sunset_1k.hdr', (envMap) => {
@@ -286,10 +305,9 @@ scene.add(
 
 
 
-
 // handling ui visibility
 let visible = true
-const visible_button = document.getElementById("1")
+const visible_button = document.getElementById("/icons/visibility.png")
 const invisIcon = "/icons/invis.png"
 const visibleIcon = "/icons/visibility.png"
 
@@ -320,8 +338,8 @@ visible_button?.addEventListener("click", () => {
 })
 
 // handling next/prev planet buttons 
-const next_button = document.getElementById("0");
-const prev_button = document.getElementById("2");
+const next_button = document.getElementById("/icons/right.svg");
+const prev_button = document.getElementById("/icons/left.svg");
 
 function updateButtons() {
   if (currentPlanet <= 0) {
@@ -352,7 +370,7 @@ next_button?.addEventListener("click", () => {
     // be very careful with this planetDesc() function 
     // if u use it before changin current planet it results in strange behaviour
     currentPlanet += 1
-    planetDesc(currentPlanet, isPersian)
+    planetDesc(currentPlanet, isPersian, isMobile.value)
     updateButtons();
     updateCameraZoom(solar_objects[currentPlanet].zoom)
   }
@@ -363,7 +381,7 @@ prev_button?.addEventListener("click", () => {
     // be very careful with this planetDesc() function 
     // if u use it before changin current planet it results in strange behaviour
     currentPlanet -= 1;
-    planetDesc(currentPlanet, isPersian)
+    planetDesc(currentPlanet, isPersian, isMobile.value)
     updateButtons();
     updateCameraZoom(solar_objects[currentPlanet].zoom)
   }
@@ -380,12 +398,12 @@ updateCameraZoom(solar_objects[currentPlanet].zoom)
 const languageBtn = document.getElementById("changeLanguage")
 languageBtn?.addEventListener('click', () => {
   isPersian = !isPersian
-  sideKeys(isPersian)
-  planetDesc(currentPlanet, isPersian);
+  sideKeys(isPersian, isMobile.value)
+  planetDesc(currentPlanet, isPersian, isMobile.value);
 })
 
 // handle solar system sidekey
-const solarSidekey = document.querySelector(".sidekeys-container button:nth-of-type(2)");
+const solarSidekey = document.getElementById("/icons/orbit.png");
 let zoomToggled = false
 solarSidekey?.addEventListener('click', () => {
   if (!zoomToggled) {
