@@ -69,7 +69,7 @@ let isMobile = {
     return this._value;
   }
 }
-let isPersian = true 
+let isPersian = false 
 let currentPlanet = 0
 const solar_objects = [
   { obj: sun,       zoom: 0.3, mobileZoom: 0.4  },

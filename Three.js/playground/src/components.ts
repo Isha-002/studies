@@ -84,8 +84,8 @@ export async function planetDesc(order: number, persian: boolean, isMobile: bool
     const planetDesc = document.createElement("main");
 
     fact.map((v, _)=> {
-      const element = document.createElement("p")
-      element.innerText = "📍" + v
+      const element = document.createElement("li")
+      element.innerText = v
       planetDesc.appendChild(element)
     })
 
