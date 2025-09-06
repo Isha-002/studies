@@ -34,6 +34,7 @@ import {
   saturn_orbit,
   saturn_ring,
   sun,
+  sun_shader,
   uranus,
   uranus_group,
   uranus_orbit,
@@ -261,6 +262,7 @@ const solar_system_group = new THREE.Group();
 solar_system_group.add(
   // planets
   sun,
+  sun_shader,
   mercury_group,
   venus_group,
   earth_group,

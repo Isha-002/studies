@@ -17,6 +17,12 @@ import {
   neptune_texture,
 } from './textures';
 
+
+// @ts-ignore
+import vertexShader from './shaders/sun.vert?raw'
+// @ts-ignore // yes i can
+import fragmentShader from './shaders/sun.frag?raw'
+
 const mercury_distance = 1;   
 const venus_distance   = 2.1;   
 const earth_distance   = 3;   
@@ -63,6 +69,15 @@ export const sun_material = new THREE.MeshStandardMaterial({
 export const sun = new THREE.Mesh(geometry, sun_material);
 sun.scale.setScalar(sun_scale)
 sun.position.x = 0;
+
+export const sun_shader_material = new THREE.RawShaderMaterial({
+  vertexShader,
+  fragmentShader,
+  transparent: true
+})
+export const sun_shader = new THREE.Mesh(geometry, sun_shader_material)
+sun_shader.scale.setScalar(sun_scale + 0.1)
+sun_shader.position.x = 0;
 ////////////////////////////////////////////////////////////////
 // mercury
 export const mercury_material = new THREE.MeshStandardMaterial({
