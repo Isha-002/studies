@@ -1,9 +1,10 @@
 import { GUI } from 'lil-gui';
 import { Camera, Scene } from 'three';
 import { generateGalaxy, parameters } from './galaxy';
+import { sun_shader_material } from './meshes';
 
 export function setup_debug(camera: Camera, gui: GUI, scene: Scene) {
-  gui.close();
+  // gui.close();
   const camera_position = gui.addFolder('Camera Position');
   camera_position.add(camera.position, 'x', -30, 30, 0.1);
   camera_position.add(camera.position, 'y', -30, 30, 0.1);
@@ -54,4 +55,7 @@ export function setup_debug(camera: Camera, gui: GUI, scene: Scene) {
     const galaxyPoints = generateGalaxy(scene);
     scene.add(galaxyPoints);
   });
+
+
+
 }

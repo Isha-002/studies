@@ -20,6 +20,7 @@ import {
   neptune_group,
   saturn,
   saturn_group,
+  sun_shader_material,
   uranus,
   uranus_group,
   venus,
@@ -77,6 +78,9 @@ export const tick = (
   clock.update()
   const elapsedTime = clock.getElapsed();
   const deltaTime = clock.getDelta()
+
+  // sun shader
+  sun_shader_material.uniforms.uTime.value = elapsedTime
 
   // planets rotation around themselves
   mercury.rotation.y = elapsedTime / mercury_rotation;

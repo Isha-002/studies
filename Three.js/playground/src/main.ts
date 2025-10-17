@@ -35,6 +35,7 @@ import {
   saturn_ring,
   sun,
   sun_shader,
+  sun_shader_material,
   uranus,
   uranus_group,
   uranus_orbit,
@@ -70,7 +71,7 @@ let isMobile = {
     return this._value;
   }
 }
-let isPersian = false 
+let isPersian = true 
 let currentPlanet = 0
 const solar_objects = [
   { obj: sun,       zoom: 0.3, mobileZoom: 0.4  },
@@ -108,8 +109,9 @@ document.querySelector(".container")?.appendChild(canvas);
 // debug
 // note: with lil-gui you can only change properties of objects
 const gui = new GUI();
-gui.show(false)
-
+gui.show(true)
+gui.add(sun_shader_material.uniforms.uFrequency.value, 'x', 0, 100, 1).name('Fx')
+gui.add(sun_shader_material.uniforms.uFrequency.value, 'y', 0, 100, 1).name('Fy')
 const debugObj = {};
 
 window.addEventListener("scroll", () => {
@@ -162,8 +164,7 @@ scene.add(camera);
 
 // camera helper
 const cameraHelper = new THREE.CameraHelper(camera);
-
-scene.add(cameraHelper);
+// scene.add(cameraHelper);
 
 
 ///////////////////////////////////////////////////////////////////

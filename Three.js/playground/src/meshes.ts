@@ -22,6 +22,7 @@ import {
 import vertexShader from './shaders/sun.vert?raw'
 // @ts-ignore // yes i can
 import fragmentShader from './shaders/sun.frag?raw'
+import { bufferAttribute } from 'three/src/nodes/TSL.js';
 
 const mercury_distance = 1;   
 const venus_distance   = 2.1;   
@@ -70,10 +71,26 @@ export const sun = new THREE.Mesh(geometry, sun_material);
 sun.scale.setScalar(sun_scale)
 sun.position.x = 0;
 
+const verticesCount = geometry.attributes.position.count
+const randoms = new Float32Array(verticesCount)
+
+for (let i = 0; i < verticesCount; i++) {
+  randoms[i] = Math.random()
+}
+geometry.setAttribute('aRandom', new THREE.BufferAttribute(randoms, 1))
+
 export const sun_shader_material = new THREE.RawShaderMaterial({
   vertexShader,
   fragmentShader,
-  transparent: true
+  // wireframe: true,
+  transparent: true,
+  uniforms: {
+    uFrequency: { value: new THREE.Vector2(10, 5) },
+    uTime: { value: 0 },
+    uColor: { value: new THREE.Color('yellow')},
+    uTexture: { value: sun_texture }
+  }
+
 })
 export const sun_shader = new THREE.Mesh(geometry, sun_shader_material)
 sun_shader.scale.setScalar(sun_scale + 0.1)
