@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import Sizes from "./Utils/Sizes"
 import Time from "./Utils/Time"
 import Camera from './Camera'
+import Renderer from './Renderer'
+import World from '../World/World'
 
 export default class WebGL 
 {
@@ -19,6 +21,8 @@ export default class WebGL
     this.time = new Time()
     this.scene = new THREE.Scene()
     this.camera = new Camera()
+    this.renderer = new Renderer()
+    this.world = new World()
 
     // Events
     this.sizes.on('resize', () => 
@@ -36,10 +40,12 @@ export default class WebGL
   resize()
   {
     this.camera.resize()
+    this.renderer.resize()
   } 
 
   update() 
   {
     this.camera.update()
+    this.renderer.update()
   }
 }

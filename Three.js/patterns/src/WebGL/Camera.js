@@ -10,6 +10,7 @@ export default class Camera
     this.canvas = this.webgl.canvas
 
     this.setInstance()
+    this.setOrbitControls()
   }
 
   setInstance()
@@ -20,9 +21,10 @@ export default class Camera
       0.1,
       100
     )
+    this.instance.position.set(0,0,3)
   }
 
-  setControls()
+  setOrbitControls()
   {
     this.controls = new OrbitControls(this.instance, this.canvas)
     this.controls.enableDamping = true
